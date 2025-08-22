@@ -3,37 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thông tin của Huân</title>
+  <title>Thông tin của Huân - Thời tiết Hà Nội</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="sky">
-    
-    <!-- Ngôi sao lấp lánh -->
+
+    <!-- 🌙 Mặt trăng -->
+    <div class="moon"></div>
+
+    <!-- 🌠 Sao rơi -->
     <div class="stars"></div>
 
-    <!-- Sao băng -->
-    <div class="shooting-star"></div>
-    <div class="shooting-star delay1"></div>
-
-    <!-- Mây -->
+    <!-- ☁️ Mây -->
     <div class="cloud cloud1"></div>
     <div class="cloud cloud2"></div>
     <div class="cloud cloud3"></div>
 
-    <!-- Nút bật/tắt menu -->
-    <button class="toggle-button" onclick="toggleMenu()" aria-label="Bật/tắt menu">☰ Menu</button>
-
-    <!-- Đồng hồ -->
+    <!-- ⏰ Đồng hồ -->
     <div class="clock" id="clock">00:00:00</div>
 
-    <!-- Chào theo thời gian -->
+    <!-- ☀️ Thời tiết -->
+    <div class="weather-info" id="weather-info">Đang tải thời tiết...</div>
+
+    <!-- 👋 Lời chào -->
     <div class="greeting" id="greeting">Xin chào!</div>
 
-    <!-- Typing effect -->
+    <!-- ✍️ Gõ chữ -->
     <div class="typing" id="typing-text"></div>
 
-    <!-- Thông tin cá nhân -->
+    <!-- ☰ Menu -->
+    <button class="toggle-button" onclick="toggleMenu()" aria-label="Bật/tắt menu">☰ Menu</button>
+
+    <!-- 👤 Thông tin cá nhân -->
     <div class="info hidden" id="infoMenu">
       <h2>Thông tin của Huân</h2>
       <ul>
@@ -45,10 +47,10 @@
       </ul>
     </div>
 
-    <!-- Nút dark/light mode -->
+    <!-- 🌗 Giao diện -->
     <button class="theme-toggle" onclick="toggleTheme()">🌓 Giao diện</button>
 
-    <!-- Nhạc nền -->
+    <!-- 🎵 Nhạc nền -->
     <audio id="bg-music" src="your-music-file.mp3" loop></audio>
     <button class="music-toggle" onclick="toggleMusic()">🎵 Nhạc</button>
 
@@ -61,7 +63,7 @@
       menu.classList.toggle('hidden');
     }
 
-    // Đồng hồ thời gian thực
+    // Đồng hồ
     function updateClock() {
       const clock = document.getElementById('clock');
       const now = new Date();
@@ -73,16 +75,19 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Chào theo thời gian
-    const greeting = document.getElementById("greeting");
-    const hour = new Date().getHours();
-    let text = "Chào bạn!";
-    if (hour < 12) text = "Chào buổi sáng!";
-    else if (hour < 18) text = "Chào buổi chiều!";
-    else text = "Chào buổi tối!";
-    greeting.textContent = text;
+    // Lời chào theo giờ
+    function updateGreeting() {
+      const greeting = document.getElementById("greeting");
+      const hour = new Date().getHours();
+      let text = "Chào bạn!";
+      if (hour < 12) text = "Chào buổi sáng!";
+      else if (hour < 18) text = "Chào buổi chiều!";
+      else text = "Chào buổi tối!";
+      greeting.textContent = text;
+    }
+    updateGreeting();
 
-    // Typing effect
+    // Gõ chữ
     const typingText = "Tôi là Huân. Rất vui được gặp bạn!";
     const typingContainer = document.getElementById("typing-text");
     let i = 0;
@@ -95,7 +100,7 @@
     }
     typeEffect();
 
-    // Dark/light mode
+    // Giao diện sáng/tối
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
     }
@@ -112,16 +117,42 @@
       musicPlaying = !musicPlaying;
     }
 
-    // Tạo nhiều sao ngẫu nhiên
+    // Sao rơi
     const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < 100; i++) {
+    function createFallingStar() {
       const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.animationDelay = `${Math.random() * 5}s`;
+      star.classList.add('falling-star');
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.animationDuration = `${3 + Math.random() * 2}s`;
+      star.style.opacity = Math.random();
       starsContainer.appendChild(star);
+      star.addEventListener('animationend', () => star.remove());
     }
+    setInterval(() => {
+      createFallingStar();
+    }, Math.random() * 500 + 300);
+
+    // 📡 Lấy dữ liệu thời tiết từ Open-Meteo (không cần API key)
+    async function fetchWeather() {
+      const lat = 21.0285;   // Vĩ độ Hà Nội
+      const lon = 105.8542;  // Kinh độ Hà Nội
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const temp = data.current_weather.temperature;
+        const windspeed = data.current_weather.windspeed;
+        const weatherInfo = document.getElementById('weather-info');
+        weatherInfo.textContent = `Nhiệt độ hiện tại Hà Nội: ${temp}°C, Gió: ${windspeed} km/h`;
+      } catch (error) {
+        const weatherInfo = document.getElementById('weather-info');
+        weatherInfo.textContent = 'Lỗi tải dữ liệu thời tiết.';
+        console.error('Lỗi lấy dữ liệu thời tiết:', error);
+      }
+    }
+    fetchWeather();
+    setInterval(fetchWeather, 10 * 60 * 1000); // cập nhật mỗi 10 phút
   </script>
 </body>
-</html>
+      </html>
