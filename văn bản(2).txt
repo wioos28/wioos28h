@@ -1,0 +1,325 @@
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Dark mode mặc định */
+.sky {
+  background: linear-gradient(to top, #0d0d2b, #1b2735, #090a0f);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Light mode */
+body.light-mode .sky {
+  background: linear-gradient(to bottom, #f0f8ff, #cdeffd, #ffffff);
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 4s infinite ease-in-out;
+}
+
+/* Sao băng */
+.shooting-star {
+  position: absolute;
+  top: -10px;
+  left: 100%;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(-45deg, white, rgba(255, 255, 255, 0));
+  transform: rotate(45deg);
+  animation: shooting 8s linear infinite;
+  z-index: 1;
+}
+
+.shooting-star.delay1 {
+  animation-delay: 4s;
+}
+
+@keyframes shooting {
+  0% {
+    transform: translateX(0) translateY(0) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100vw) translateY(100vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Mây */
+.cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.08;
+  animation: moveClouds 60s linear infinite;
+  z-index: 2;
+}
+.cloud:before,
+.cloud:after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+}
+.cloud1 {
+  width: 120px;
+  height: 60px;
+  top: 50px;
+  left: -150px;
+  animation-duration: 80s;
+}
+.cloud2 {
+  width: 150px;
+  height: 70px;
+  top: 120px;
+  left: -200px;
+  animation-duration: 100s;
+}
+.cloud3 {
+  width: 100px;
+  height: 50px;
+  top: 200px;
+  left: -100px;
+  animation-duration: 60s;
+}
+.cloud:before {
+  width: 60%;
+  height: 60%;
+  top: -20px;
+  left: 10px;
+}
+.cloud:after {
+  width: 50%;
+  height: 50%;
+  top: 10px;
+  left: 60px;
+}
+
+/* Đồng hồ */
+.clock {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+  z-index: 5;
+  background-color: rgba(255,255,255,0.1);
+  padding: 8px 16px;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+}
+
+/* Greeting */
+.greeting {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  font-size: 18px;
+  color: #fff;
+  z-index: 5;
+}
+
+/* Typing effect */
+.typing {
+  position: absolute;
+  top: 90px;
+  left: 20px;
+  font-size: 16px;
+  color: #fff;
+  font-style: italic;
+  z-index: 5;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #fff;
+  animation: blinkCursor 0.7s steps(44) infinite normal;
+}
+
+/* Nút toggle menu */
+.toggle-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  padding: 10px 20px;
+  background-color: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
+/* Thông tin cá nhân */
+.info {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  animation: fadeIn 2s ease-out;
+  z-index: 3;
+  padding: 0 20px;
+}
+
+.info h2 {
+  margin-bottom: 10px;
+  font-size: 1.8em;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+.info ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.info ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px 18px;
+  border-radius: 25px;
+  backdrop-filter: blur(4px);
+}
+
+.info ul li a:hover {
+  color: #ffd700;
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Ẩn menu khi có class hidden */
+.hidden {
+  display: none;
+}
+
+/* Nút bật/tắt nhạc */
+.music-toggle {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  z-index: 10;
+  padding: 10px 18px;
+  background-color: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.3s;
+}
+
+.music-toggle:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
+/* Nút chuyển giao diện */
+.theme-toggle {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  z-index: 10;
+  padding: 10px 18px;
+  background-color: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
+/* Animation */
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(120vw); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+@keyframes blinkCursor {
+  0% { border-color: transparent; }
+  50% { border-color: white; }
+  100% { border-color: transparent; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .info h2 {
+    font-size: 1.4em;
+  }
+
+  .info ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .info ul li a {
+    display: inline-block;
+    width: 70%;
+  }
+
+  .typing {
+    max-width: 90%;
+    font-size: 14px;
+  }
+
+  .clock, .greeting {
+    font-size: 16px;
+  }
+
+  .toggle-button, .music-toggle, .theme-toggle {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}

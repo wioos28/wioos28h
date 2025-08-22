@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thông tin của Huân</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sky">
+    
+    <!-- Ngôi sao lấp lánh -->
+    <div class="stars"></div>
+
+    <!-- Sao băng -->
+    <div class="shooting-star"></div>
+    <div class="shooting-star delay1"></div>
+
+    <!-- Mây -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <!-- Nút bật/tắt menu -->
+    <button class="toggle-button" onclick="toggleMenu()" aria-label="Bật/tắt menu">☰ Menu</button>
+
+    <!-- Đồng hồ -->
+    <div class="clock" id="clock">00:00:00</div>
+
+    <!-- Chào theo thời gian -->
+    <div class="greeting" id="greeting">Xin chào!</div>
+
+    <!-- Typing effect -->
+    <div class="typing" id="typing-text"></div>
+
+    <!-- Thông tin cá nhân -->
+    <div class="info hidden" id="infoMenu">
+      <h2>Thông tin của Huân</h2>
+      <ul>
+        <li><a href="https://discord.gg/F2E5FvmSay" target="_blank">Discord</a></li>
+        <li><a href="https://www.facebook.com/share/19ucoff965/?mibextid=wwXIfr" target="_blank">Facebook</a></li>
+        <li><a href="https://www.tiktok.com/@wioos28" target="_blank">TikTok</a></li>
+        <li><a href="https://youtube.com/@wioos28?si=JrqmjRunKl9b47Tb" target="_blank">YouTube</a></li>
+        <li><a href="mailto:wioos2002h@gmail.com">Gmail</a></li>
+      </ul>
+    </div>
+
+    <!-- Nút dark/light mode -->
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Giao diện</button>
+
+    <!-- Nhạc nền -->
+    <audio id="bg-music" src="your-music-file.mp3" loop></audio>
+    <button class="music-toggle" onclick="toggleMusic()">🎵 Nhạc</button>
+
+  </div>
+
+  <script>
+    // Toggle menu
+    function toggleMenu() {
+      const menu = document.getElementById('infoMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Đồng hồ thời gian thực
+    function updateClock() {
+      const clock = document.getElementById('clock');
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      clock.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Chào theo thời gian
+    const greeting = document.getElementById("greeting");
+    const hour = new Date().getHours();
+    let text = "Chào bạn!";
+    if (hour < 12) text = "Chào buổi sáng!";
+    else if (hour < 18) text = "Chào buổi chiều!";
+    else text = "Chào buổi tối!";
+    greeting.textContent = text;
+
+    // Typing effect
+    const typingText = "Tôi là Huân. Rất vui được gặp bạn!";
+    const typingContainer = document.getElementById("typing-text");
+    let i = 0;
+    function typeEffect() {
+      if (i < typingText.length) {
+        typingContainer.textContent += typingText.charAt(i);
+        i++;
+        setTimeout(typeEffect, 100);
+      }
+    }
+    typeEffect();
+
+    // Dark/light mode
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+    }
+
+    // Nhạc nền
+    const music = document.getElementById("bg-music");
+    let musicPlaying = false;
+    function toggleMusic() {
+      if (musicPlaying) {
+        music.pause();
+      } else {
+        music.play();
+      }
+      musicPlaying = !musicPlaying;
+    }
+
+    // Tạo nhiều sao ngẫu nhiên
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
