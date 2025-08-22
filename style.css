@@ -1,325 +1,229 @@
-
 /* Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body, html {
-  height: 100%;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-/* Dark mode mặc định */
-.sky {
-  background: linear-gradient(to top, #0d0d2b, #1b2735, #090a0f);
-  height: 100%;
-  position: relative;
-  overflow: hidden;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to top, #0d0d2b, #1b2735, #090a0f);
+    color: white;
+    overflow: hidden;
+    position: relative;
 }
 
 /* Light mode */
-body.light-mode .sky {
-  background: linear-gradient(to bottom, #f0f8ff, #cdeffd, #ffffff);
-}
-
-.stars {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0;
-  animation: twinkle 4s infinite ease-in-out;
-}
-
-/* Sao băng */
-.shooting-star {
-  position: absolute;
-  top: -10px;
-  left: 100%;
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(-45deg, white, rgba(255, 255, 255, 0));
-  transform: rotate(45deg);
-  animation: shooting 8s linear infinite;
-  z-index: 1;
-}
-
-.shooting-star.delay1 {
-  animation-delay: 4s;
-}
-
-@keyframes shooting {
-  0% {
-    transform: translateX(0) translateY(0) rotate(45deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-100vw) translateY(100vh) rotate(45deg);
-    opacity: 0;
-  }
-}
-
-/* Mây */
-.cloud {
-  position: absolute;
-  background: #fff;
-  border-radius: 50%;
-  opacity: 0.08;
-  animation: moveClouds 60s linear infinite;
-  z-index: 2;
-}
-.cloud:before,
-.cloud:after {
-  content: '';
-  position: absolute;
-  background: #fff;
-  border-radius: 50%;
-}
-.cloud1 {
-  width: 120px;
-  height: 60px;
-  top: 50px;
-  left: -150px;
-  animation-duration: 80s;
-}
-.cloud2 {
-  width: 150px;
-  height: 70px;
-  top: 120px;
-  left: -200px;
-  animation-duration: 100s;
-}
-.cloud3 {
-  width: 100px;
-  height: 50px;
-  top: 200px;
-  left: -100px;
-  animation-duration: 60s;
-}
-.cloud:before {
-  width: 60%;
-  height: 60%;
-  top: -20px;
-  left: 10px;
-}
-.cloud:after {
-  width: 50%;
-  height: 50%;
-  top: 10px;
-  left: 60px;
+body.light-mode {
+    background: linear-gradient(to top, #a0c8ff, #c9d8ff, #e6f0ff);
+    color: #222;
 }
 
 /* Đồng hồ */
 .clock {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 20px;
-  color: #fff;
-  font-weight: bold;
-  z-index: 5;
-  background-color: rgba(255,255,255,0.1);
-  padding: 8px 16px;
-  border-radius: 10px;
-  backdrop-filter: blur(4px);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgba(255,255,255,0.1);
+    padding: 8px 16px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    z-index: 10;
 }
 
 /* Greeting */
 .greeting {
-  position: absolute;
-  top: 60px;
-  left: 20px;
-  font-size: 18px;
-  color: #fff;
-  z-index: 5;
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    font-size: 18px;
+    z-index: 10;
 }
 
-/* Typing effect */
-.typing {
-  position: absolute;
-  top: 90px;
-  left: 20px;
-  font-size: 16px;
-  color: #fff;
-  font-style: italic;
-  z-index: 5;
-  max-width: 300px;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid #fff;
-  animation: blinkCursor 0.7s steps(44) infinite normal;
+/* Weather */
+.weather-info {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    font-size: 18px;
+    z-index: 10;
+    background-color: rgba(255,255,255,0.1);
+    padding: 8px 16px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    max-width: 300px;
 }
 
-/* Nút toggle menu */
+/* Menu */
+.toggle-button,
+.theme-toggle,
+.music-toggle {
+    position: absolute;
+    right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: white;
+    backdrop-filter: blur(4px);
+    transition: background-color 0.3s ease;
+    z-index: 10;
+}
+
+.toggle-button:hover,
+.theme-toggle:hover,
+.music-toggle:hover {
+    background: rgba(255,255,255,0.3);
+}
+
 .toggle-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 10;
-  padding: 10px 20px;
-  background-color: rgba(255,255,255,0.1);
-  border: none;
-  color: white;
-  font-size: 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: background-color 0.3s;
+    top: 20px;
 }
 
-.toggle-button:hover {
-  background-color: rgba(255,255,255,0.3);
+.theme-toggle {
+    top: 60px;
 }
 
-/* Thông tin cá nhân */
+.music-toggle {
+    top: 100px;
+}
+
+/* Info menu */
 .info {
-  position: absolute;
-  bottom: 30px;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  animation: fadeIn 2s ease-out;
-  z-index: 3;
-  padding: 0 20px;
+    position: absolute;
+    top: 140px;
+    right: 20px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    color: white;
+    backdrop-filter: blur(6px);
+    z-index: 10;
+}
+
+.info.hidden {
+    display: none;
 }
 
 .info h2 {
-  margin-bottom: 10px;
-  font-size: 1.8em;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    margin-bottom: 12px;
+    font-size: 20px;
 }
 
 .info ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
+    list-style: none;
+      }
+.info ul li {
+    margin-bottom: 8px;
 }
 
 .info ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s, transform 0.3s;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px 18px;
-  border-radius: 25px;
-  backdrop-filter: blur(4px);
+    color: #89cfff;
+    text-decoration: none;
 }
 
 .info ul li a:hover {
-  color: #ffd700;
-  transform: scale(1.1);
-  background-color: rgba(255, 255, 255, 0.2);
+    text-decoration: underline;
 }
 
-/* Ẩn menu khi có class hidden */
-.hidden {
-  display: none;
+/* Sao rơi */
+.stars {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
 }
 
-/* Nút bật/tắt nhạc */
-.music-toggle {
-  position: absolute;
-  bottom: 80px;
-  right: 20px;
-  z-index: 10;
-  padding: 10px 18px;
-  background-color: rgba(255,255,255,0.1);
-  border: none;
-  color: white;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: background-color 0.3s;
+.falling-star {
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(-45deg, white, rgba(255,255,255,0));
+    filter: drop-shadow(0 0 6px white);
+    animation-name: fall;
+    animation-timing-function: linear;
 }
 
-.music-toggle:hover {
-  background-color: rgba(255,255,255,0.3);
+@keyframes fall {
+    to {
+          transform: translateY(100vh);
+          opacity: 0;
+    }
 }
 
-/* Nút chuyển giao diện */
-.theme-toggle {
-  position: absolute;
-  bottom: 30px;
-  right: 20px;
-  z-index: 10;
-  padding: 10px 18px;
-  background-color: rgba(255,255,255,0.1);
-  border: none;
-  color: white;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: background-color 0.3s;
+/* Clouds (simple shapes for demo) */
+.cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    filter: blur(5px);
+    z-index: 2;
+    animation: cloud-move 60s linear infinite;
 }
 
-.theme-toggle:hover {
-  background-color: rgba(255,255,255,0.3);
+.cloud1 {
+    width: 120px;
+    height: 60px;
+    top: 50px;
+    left: 10%;
+    animation-delay: 0s;
 }
 
-/* Animation */
-@keyframes moveClouds {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(120vw); }
+.cloud2 {
+    width: 180px;
+    height: 90px;
+    top: 120px;
+    left: 50%;
+    animation-delay: 20s;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.cloud3 {
+    width: 100px;
+        height: 50px;
+    top: 180px;
+    left: 80%;
+    animation-delay: 40s;
 }
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.4); }
+@keyframes cloud-move {
+    0% {
+          transform: translateX(-150px);
+    }
+    100% {
+          transform: translateX(110vw);
+    }
 }
 
-@keyframes blinkCursor {
-  0% { border-color: transparent; }
-  50% { border-color: white; }
-  100% { border-color: transparent; }
+/* Mặt trăng */
+.moon {
+    position: absolute;
+    top: 40px;
+    right: 80px;
+  width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #fff, #ccc);
+    border-radius: 50%;
+    box-shadow: 10px 10px 30px rgba(255,255,255,0.5);
+    z-index: 3;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .info h2 {
-    font-size: 1.4em;
+/* Gõ chữ */
+.typing {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 20px;
+    font-style: italic;
+    color: #ddd;
+    max-width: 90vw;
+    z-index: 10;
   }
-
-  .info ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .info ul li a {
-    display: inline-block;
-    width: 70%;
-  }
-
-  .typing {
-    max-width: 90%;
-    font-size: 14px;
-  }
-
-  .clock, .greeting {
-    font-size: 16px;
-  }
-
-  .toggle-button, .music-toggle, .theme-toggle {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-}
