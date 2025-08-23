@@ -55,8 +55,16 @@
     <!-- 🌗 Giao diện -->
     <button class="theme-toggle" onclick="toggleTheme()">🌓 Giao diện</button>
 
-    <!-- 🎵 Nhạc nền -->
-    <audio id="bg-music" src="your-music-file.mp3" loop></audio>
+    <!-- 🎵 Nhạc nền từ YouTube -->
+    <div id="youtube-player-container" style="display: none;">
+      <iframe id="youtube-player"
+              width="0" height="0"
+              src="https://www.youtube.com/embed/750muho7O0o?autoplay=1&loop=1&playlist=750muho7O0o"
+              frameborder="0"
+              allow="autoplay"
+              allowfullscreen>
+      </iframe>
+    </div>
     <button class="music-toggle" onclick="toggleMusic()">🎵 Nhạc</button>
   </div>
 
@@ -100,11 +108,12 @@
       document.body.classList.toggle('light-mode');
     }
 
-    const music = document.getElementById("bg-music");
+    // 🎵 Tắt/Bật nhạc từ YouTube
     let musicPlaying = false;
     function toggleMusic() {
-      musicPlaying ? music.pause() : music.play();
+      const playerContainer = document.getElementById("youtube-player-container");
       musicPlaying = !musicPlaying;
+      playerContainer.style.display = musicPlaying ? "block" : "none";
     }
 
     async function fetchWeather() {
@@ -139,4 +148,4 @@
     setInterval(controlLightning, 60000);
   </script>
 </body>
-</html>
+  </html>
