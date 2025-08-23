@@ -1,235 +1,251 @@
 /* ========== RESET ========== */
 * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;}
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f0f0f0;
-        color: #111;
-        overflow-x: hidden;
-        transition: background-color 0.5s, color 0.5s;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f0f0;
+  color: #111;
+  overflow-x: hidden;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 /* ========== BACKGROUND - SKY ========== */
 .sky {
-        position: relative;
-        height: 100vh;
-        background: linear-gradient(to bottom, #87ceeb, #ffffff);
-        overflow: hidden;
-        transition: background 0.5s;
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(to bottom, #87ceeb, #ffffff);
+  overflow: hidden;
+  transition: background 0.5s;
 }
 
 /* ========== SUN & MOON ========== */
 .sun, .moon {
-        position: absolute;
-        top: 50px;
-        left: 50px;
-        border-radius: 50%;
-        transition: opacity 0.5s;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border-radius: 50%;
+  transition: opacity 0.5s;
 }
 
 .sun {
-        width: 100px;  height: 100px;
-        background: yellow;
-        box-shadow: 0 0 40px rgba(255, 255, 0, 0.8);
-        opacity: 1;
+  width: 100px;
+  height: 100px;
+  background: yellow;
+  box-shadow: 0 0 40px rgba(255, 255, 0, 0.8);
+  opacity: 1;
 }
 
 .moon {
-        width: 80px;
-        height: 80px;
-        background: #f0f0f0;
-        box-shadow: 0 0 30px #ccc;
-        opacity: 0;
-      }
+  width: 80px;
+  height: 80px;
+  background: #f0f0f0;
+  box-shadow: 0 0 30px #ccc;
+  opacity: 0;
+}
 
 /* ========== CLOUDS ========== */
 .cloud {
-        position: absolute;
-        background: #fff;
-        border-radius: 50%;
-        opacity: 0.95;
-        filter: blur(2px);
-        animation: moveClouds 60s linear infinite;
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.95;
+  filter: blur(2px);
+  animation: moveClouds 60s linear infinite;
 }
 
 .cloud1 {
-        width: 200px;
-        height: 60px;
-        top: 100px;
-        left: -200px;
+  width: 200px;
+  height: 60px;
+  top: 100px;
+  left: -200px;
 }
 
 .cloud2 {
-        width: 150px;
-        height: 50px;
-        top: 200px;
-        left: -150px;
-        animation-delay: 15s;
+  width: 150px;
+  height: 50px;
+  top: 200px;
+  left: -150px;
+  animation-delay: 15s;
 }
 
 .cloud3 {
-        width: 180px;
-        height: 55px;
-        top: 300px;
-        left: -180px;
-        animation-delay: 30s;
+  width: 180px;
+  height: 55px;
+  top: 300px;
+  left: -180px;
+  animation-delay: 30s;
 }
 
 @keyframes moveClouds {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(130vw); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(130vw); }
 }
 
 /* ========== RAIN ========== */
 .rain {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-image:
-                  linear-gradient(rgba(255, 255, 255, 0.2) 30%, transparent 30%),
-                  linear-gradient(rgba(255, 255, 255, 0.2) 30%, transparent 30%);
-        background-size: 2px 40px;
-        background-repeat: repeat;
-        animation: rainAnim 0.4s linear infinite;
-        pointer-events: none;
-        z-index: 3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.2) 30%, transparent 30%),
+    linear-gradient(rgba(255, 255, 255, 0.2) 30%, transparent 30%);
+  background-size: 2px 40px;
+  background-repeat: repeat;
+  animation: rainAnim 0.4s linear infinite;
+  pointer-events: none;
+  z-index: 3;
 }
-@keyframes rainAnim {
-        0% { background-position: 0 0, 10px 20px; }
-        100% { background-position: 0 40px, 10px 60px; }
-}
-/* ========== LIGHTNING ========== */
-.lightning {  position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background: white;
-              opacity: 0;
-              animation: lightningFlash 5s infinite;
-              pointer-events: none;
-              z-index: 5;
-           }
 
-      @keyframes lightningFlash {
-              0%, 90%, 100% { opacity: 0; }  92%, 94%, 96% { opacity: 1; }
-      }
+@keyframes rainAnim {
+  0% { background-position: 0 0, 10px 20px; }
+  100% { background-position: 0 40px, 10px 60px; }
+}
+
+/* ========== LIGHTNING ========== */
+.lightning {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  opacity: 0;
+  animation: lightningFlash 5s infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes lightningFlash {
+  0%, 90%, 100% { opacity: 0; }
+  92%, 94%, 96% { opacity: 1; }
+}
+
 /* ========== CLOCK & WEATHER INFO ========== */
-      .clock {
-              position: absolute;
-              top: 20px;
-              right: 20px;
-              font-size: 2rem;
-              background: rgba(0, 0, 0, 0.4);
-              color: #fff;
-              padding: 10px 20px;
-              border-radius: 10px;
-              z-index: 10;
-              user-select: none;
-      }
+.clock {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  z-index: 10;
+  user-select: none;
+}
 
 .weather-info {
-        position: absolute;  top: 80px;
-        right: 20px;  font-size: 1.2rem;
-        color: #333;
-        background: rgba(255, 255, 255, 0.7);
-        padding: 10px 15px;
-        border-radius: 8px;
-        z-index: 10;
-        max-width: 280px;
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  font-size: 1.2rem;
+  color: #333;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px 15px;
+  border-radius: 8px;
+  z-index: 10;
+  max-width: 280px;
 }
 
 /* ========== GREETING & TYPING ========== */
 .greeting {
-        position: absolute;
-        bottom: 140px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 2rem;
-        font-weight: bold;
-        color: #222;
-        z-index: 10;
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+  z-index: 10;
 }
 
-      .typing {
-              position: absolute;
-              bottom: 100px;
-              left: 50%;
-              transform: translateX(-50%);
-              font-size: 1.2rem;  font-style: italic;
-              color: #444;
-              z-index: 10;
-      }
+.typing {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #444;
+  z-index: 10;
+}
 
 /* ========== BUTTONS ========== */
 .toggle-button,
 .theme-toggle,
 .music-toggle {
-        position: absolute;
-        bottom: 20px;
-        padding: 10px 15px;
-        font-size: 1rem;
-        background: #333;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        z-index: 10;  transition: background 0.3s;
+  position: absolute;
+  bottom: 20px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
 }
+
 .toggle-button:hover,
 .theme-toggle:hover,
 .music-toggle:hover {
-        background: #555;
+  background: #555;
 }
 
-.toggle-button { left: 20px; }.theme-toggle { left: 130px; }
+.toggle-button { left: 20px; }
+.theme-toggle { left: 130px; }
 .music-toggle { left: 270px; }
 
 /* ========== INFO MENU ========== */
 .info {
-        position: absolute;
-        top: 150px;
-        left: 20px;  max-width: 300px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.85);
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        z-index: 10;
+  position: absolute;
+  top: 150px;
+  left: 20px;
+  max-width: 300px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 .info h2 {
-        margin-bottom: 10px;
-        font-size: 1.5rem;  color: #333;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #333;
 }
 
 .info ul {
-        list-style: none;
+  list-style: none;
 }
 
 .info ul li {
-        margin-bottom: 8px;}
+  margin-bottom: 8px;
+}
 
 .info ul li a {
-        color: #0077cc;
-        text-decoration: none;
-        font-weight: bold;
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .info ul li a:hover {
-        text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* ========== HIDDEN ========== */
 .hidden {
-        display: none;
+  display: none;
 }
 
 /* ========== THEMES ========== */
 .daytime .sky {
-        background: linear-gradient(to bottom, #87ceeb, #ffffff);
+  background: linear-gradient(to bottom, #87ceeb, #ffffff);
 }
 
 .daytime .sun { opacity: 1; }
@@ -238,11 +254,11 @@ body {
 .daytime .weather-info,
 .daytime .greeting,
 .daytime .typing {
-        color: #000;
+  color: #000;
 }
 
 .nighttime .sky {
-        background: linear-gradient(to bottom, #001d3d, #000814);
+  background: linear-gradient(to bottom, #001d3d, #000814);
 }
 
 .nighttime .sun { opacity: 0; }
@@ -250,22 +266,26 @@ body {
 .nighttime .clock,
 .nighttime .weather-info,
 .nighttime .greeting,
-.nighttime .typing {  color: #fff;
-                   }
+.nighttime .typing {
+  color: #fff;
+}
 
 .light-mode {
-        background-color: #f0f0f0;
-        color: #111;
+  background-color: #f0f0f0;
+  color: #111;
 }
 
 .light-mode .sky {
-        background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
 }
+
 .light-mode .info {
-        background: #fff;}
+  background: #fff;
+}
 
 .light-mode .toggle-button,
-.light-mode .theme-toggle,.light-mode .music-toggle {
-        background: #1976d2;
-        color: #fff;
+.light-mode .theme-toggle,
+.light-mode .music-toggle {
+  background: #1976d2;
+  color: #fff;
 }
