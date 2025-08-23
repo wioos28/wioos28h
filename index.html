@@ -1,158 +1,139 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thông tin của Huân - Thời tiết Hà Nội</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Thông tin của Huân - Thời tiết Hà Nội</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 <body>
-  <div class="sky">
+    <div class="sky">
+          <!-- ☀️ Mặt trời -->    <div class="sun" id="sun"></div>div>
+          <!-- 🌙 Mặt trăng -->
+          <div class="moon"></div>div>
 
-    <!-- 🌙 Mặt trăng -->
-    <div class="moon"></div>
+          <!-- ☁️ Mây -->
+          <div class="cloud cloud1"></div>div>
+          <div class="cloud cloud2"></div>div>
+          <div class="cloud cloud3"></div>div>
 
-    <!-- 🌠 Sao rơi -->
-    <div class="stars"></div>
+          <!-- 🌧️ Mưa -->
+          <div class="rain"></div>div>
+          <!-- ⚡ Sấm chớp -->
+          <div class="lightning" id="lightning"></div>div>
 
-    <!-- ☁️ Mây -->
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <div class="cloud cloud3"></div>
+          <!-- 🌫️ Sương mù -->
+          <div class="fog"></div>div>
+          <!-- ⏰ Đồng hồ -->    <div class="clock" id="clock">00:00:00</div>div>
 
-    <!-- ⏰ Đồng hồ -->
-    <div class="clock" id="clock">00:00:00</div>
+          <!-- ☀️ Thời tiết -->
+          <div class="weather-info" id="weather-info">Đang tải thời tiết...</div>div>
 
-    <!-- ☀️ Thời tiết -->
-    <div class="weather-info" id="weather-info">Đang tải thời tiết...</div>
+          <!-- 👋 Lời chào -->
+          <div class="greeting" id="greeting">Xin chào!</div>div>
+          <!-- ✍️ Gõ chữ -->
+          <div class="typing" id="typing-text"></div>div>
 
-    <!-- 👋 Lời chào -->
-    <div class="greeting" id="greeting">Xin chào!</div>
+          <!-- ☰ Menu -->
+          <button class="toggle-button" onclick="toggleMenu()">☰ Menu</button>button>
 
-    <!-- ✍️ Gõ chữ -->
-    <div class="typing" id="typing-text"></div>
-
-    <!-- ☰ Menu -->
-    <button class="toggle-button" onclick="toggleMenu()" aria-label="Bật/tắt menu">☰ Menu</button>
-
-    <!-- 👤 Thông tin cá nhân -->
-    <div class="info hidden" id="infoMenu">
-      <h2>Thông tin của Huân</h2>
-      <ul>
-        <li><a href="https://discord.gg/F2E5FvmSay" target="_blank">Discord</a></li>
-        <li><a href="https://www.facebook.com/share/19ucoff965/?mibextid=wwXIfr" target="_blank">Facebook</a></li>
-        <li><a href="https://www.tiktok.com/@wioos28" target="_blank">TikTok</a></li>
-        <li><a href="https://youtube.com/@wioos28?si=JrqmjRunKl9b47Tb" target="_blank">YouTube</a></li>
-        <li><a href="mailto:wioos2002h@gmail.com">Gmail</a></li>
-      </ul>
-    </div>
-
-    <!-- 🌗 Giao diện -->
-    <button class="theme-toggle" onclick="toggleTheme()">🌓 Giao diện</button>
-
-    <!-- 🎵 Nhạc nền -->
-    <audio id="bg-music" src="your-music-file.mp3" loop></audio>
-    <button class="music-toggle" onclick="toggleMusic()">🎵 Nhạc</button>
-
-  </div>
+          <!-- 👤 Thông tin cá nhân -->
+          <div class="info hidden" id="infoMenu">
+                  <h2>Thông tin của Huân</h2>
+                <ul>
+                          <li><a href="https://discord.gg/F2E5FvmSay" target="_blank">Discord</a>a></li>
+                        <li><a href="https://www.facebook.com/share/19ucoff965/?mibextid=wwXIfr" target="_blank">Facebook</a>a></li>
+                        <li><a href="https://www.tiktok.com/@wioos28" target="_blank">TikTok</a>a></li>
+                        <li><a href="https://youtube.com/@wioos28?si=JrqmjRunKl9b47Tb" target="_blank">YouTube</a>a></li>
+                        <li><a href="mailto:wioos2002h@gmail.com">Gmail</a>a></li>
+                </ul>
+          </div>div>
+    
+        <!-- 🌗 Giao diện -->
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 Giao diện</button>button>
+    
+        <!-- 🎵 Nhạc nền -->
+        <audio id="bg-music" src="your-music-file.mp3" loop></audio>audio>
+        <button class="music-toggle" onclick="toggleMusic()">🎵 Nhạc</button>button>
+    </div>div>
 
   <script>
-    // Toggle menu
-    function toggleMenu() {
-      const menu = document.getElementById('infoMenu');
-      menu.classList.toggle('hidden');
+        function toggleMenu() {
+                document.getElementById('infoMenu').classList.toggle('hidden');
+        }
+
+        function updateClock() {
+                const now = new Date();
+                const hours = now.getHours().toString().padStart(2, '0');
+                const minutes = now.getMinutes().toString().padStart(2, '0');
+                const seconds = now.getSeconds().toString().padStart(2, '0');
+          document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        function updateGreeting() {
+                const hour = new Date().getHours();
+                const greeting = document.getElementById("greeting");
+                greeting.textContent =
+                          hour < 12 ? "Chào buổi sáng!" :        hour < 18 ? "Chào buổi chiều!" :
+                          "Chào buổi tối!";    }
+        updateGreeting();
+
+        const typingText = "Tôi là Huân. Rất vui được gặp bạn!";
+        let i = 0;
+        function typeEffect() {
+                if (i < typingText.length) {
+                          document.getElementById("typing-text").textContent += typingText.charAt(i);
+                          i++;        setTimeout(typeEffect, 100);
+    }
+        }
+        typeEffect();
+
+        function toggleTheme() {
+                document.body.classList.toggle('light-mode');
     }
 
-    // Đồng hồ
-    function updateClock() {
-      const clock = document.getElementById('clock');
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      clock.textContent = `${hours}:${minutes}:${seconds}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+        const music = document.getElementById("bg-music");
+        let musicPlaying = false;
+        function toggleMusic() {      musicPlaying ? music.pause() : music.play();
+                                      musicPlaying = !musicPlaying;
+                               }
 
-    // Lời chào theo giờ
-    function updateGreeting() {
-      const greeting = document.getElementById("greeting");
-      const hour = new Date().getHours();
-      let text = "Chào bạn!";
-      if (hour < 12) text = "Chào buổi sáng!";
-      else if (hour < 18) text = "Chào buổi chiều!";
-      else text = "Chào buổi tối!";
-      greeting.textContent = text;
-    }
-    updateGreeting();
+        async function fetchWeather() {
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=21.0285&longitude=105.8542&current_weather=true`;
+                try {
+                          const res = await fetch(url);
+                          const data = await res.json();
+                          const temp = data.current_weather.temperature;
+                          const wind = data.current_weather.windspeed;
+                          document.getElementById('weather-info').textContent = `Hà Nội: ${temp}°C, Gió: ${wind} km/h`;
+                } catch (e) {
+                          document.getElementById('weather-info').textContent = 'Không tải được thời tiết.';
+                }    }
+        fetchWeather();
+        setInterval(fetchWeather, 600000);
 
-    // Gõ chữ
-    const typingText = "Tôi là Huân. Rất vui được gặp bạn!";
-    const typingContainer = document.getElementById("typing-text");
-    let i = 0;
-    function typeEffect() {
-      if (i < typingText.length) {
-        typingContainer.textContent += typingText.charAt(i);
-        i++;
-        setTimeout(typeEffect, 100);
-      }
-    }
-    typeEffect();
+        function updateThemeByTime() {
+                const hour = new Date().getHours();
+                document.body.classList.toggle('nighttime', hour >= 18 || hour < 6);
+                document.body.classList.toggle('daytime', hour >= 6 && hour < 18);
+        }
+        updateThemeByTime();
+        setInterval(updateThemeByTime, 60000);
 
-    // Giao diện sáng/tối
-    function toggleTheme() {
-      document.body.classList.toggle('light-mode');
-    }
-
-    // Nhạc nền
-    const music = document.getElementById("bg-music");
-    let musicPlaying = false;
-    function toggleMusic() {
-      if (musicPlaying) {
-        music.pause();
-      } else {
-        music.play();
-      }
-      musicPlaying = !musicPlaying;
-    }
-
-    // Sao rơi
-    const starsContainer = document.querySelector('.stars');
-    function createFallingStar() {
-      const star = document.createElement('div');
-      star.classList.add('falling-star');
-      star.style.left = `${Math.random() * 100}vw`;
-      star.style.animationDuration = `${3 + Math.random() * 2}s`;
-      star.style.opacity = Math.random();
-      starsContainer.appendChild(star);
-      star.addEventListener('animationend', () => star.remove());
-    }
-    setInterval(() => {
-      createFallingStar();
-    }, Math.random() * 500 + 300);
-
-    // 📡 Lấy dữ liệu thời tiết từ Open-Meteo (không cần API key)
-    async function fetchWeather() {
-      const lat = 21.0285;   // Vĩ độ Hà Nội
-      const lon = 105.8542;  // Kinh độ Hà Nội
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
-
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const temp = data.current_weather.temperature;
-        const windspeed = data.current_weather.windspeed;
-        const weatherInfo = document.getElementById('weather-info');
-        weatherInfo.textContent = `Nhiệt độ hiện tại Hà Nội: ${temp}°C, Gió: ${windspeed} km/h`;
-      } catch (error) {
-        const weatherInfo = document.getElementById('weather-info');
-        weatherInfo.textContent = 'Lỗi tải dữ liệu thời tiết.';
-        console.error('Lỗi lấy dữ liệu thời tiết:', error);
-      }
-    }
-    fetchWeather();
-    setInterval(fetchWeather, 10 * 60 * 1000); // cập nhật mỗi 10 phút
+        // Bật tắt sấm chớp ban đêm
+        function controlLightning() {
+                const hour = new Date().getHours();
+                const lightning = document.getElementById('lightning');
+                lightning.style.display = (hour >= 18 || hour < 6) ? 'block' : 'none';
+        }
+        controlLightning();
+        setInterval(controlLightning, 60000);
   </script>
 </body>
-      </html>
+</html>html>
+  </script></li></li>
+                </ul></h2>
+</body></title>
+  </head>
