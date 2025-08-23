@@ -1,323 +1,355 @@
-/* ========== RESET ========== */
+/* Reset cơ bản */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f0f0;
-  color: #111;
+  background: linear-gradient(to top, #1e3c72, #2a5298);
+  color: white;
+  min-height: 100vh;
   overflow-x: hidden;
-  transition: background-color 0.5s, color 0.5s;
 }
 
-/* ========== BACKGROUND - SKY ========== */
+/* Cảnh nền */
 .sky {
   position: relative;
+  width: 100%;
   height: 100vh;
-  background: linear-gradient(to bottom, #87ceeb, #ffffff);
   overflow: hidden;
-  transition: background 0.5s;
 }
 
-/* ========== SUN & MOON ========== */
-.sun, .moon {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  border-radius: 50%;
-  transition: opacity 0.5s;
-}
-
+/* ☀️ Mặt trời */
 .sun {
-  width: 100px;
-  height: 100px;
-  background: yellow;
-  box-shadow: 0 0 40px rgba(255, 255, 0, 0.8);
-  opacity: 1;
-}
-
-.moon {
+  position: absolute;
+  top: 10%;
+  left: 20%;
   width: 80px;
   height: 80px;
-  background: #f0f0f0;
-  box-shadow: 0 0 30px #ccc;
-  opacity: 0;
+  background: radial-gradient(circle at center, #ffd93b, #f1c232);
+  border-radius: 50%;
+  box-shadow: 0 0 30px 10px #ffd93b88;
+  animation: rotateSun 20s linear infinite;
 }
 
-/* ========== CLOUDS ========== */
+@keyframes rotateSun {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 🌙 Mặt trăng */
+.moon {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  width: 60px;
+  height: 60px;
+  background: #f0e9d2;
+  border-radius: 50%;
+  box-shadow: inset 15px 0 0 0 #1e3c72;
+  filter: drop-shadow(0 0 5px #fff9cc);
+}
+
+/* ☁️ Mây */
 .cloud {
   position: absolute;
-  background: #fff;
+  background: linear-gradient(to bottom, #fff, #ccc);
   border-radius: 50%;
-  opacity: 0.95;
-  filter: blur(2px);
-  animation: moveClouds 60s linear infinite;
+  opacity: 0.85;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+.cloud1 { top: 20%; left: 40%; width: 120px; height: 60px; }
+.cloud2 { top: 30%; left: 60%; width: 100px; height: 50px; }
+.cloud3 { top: 25%; left: 55%; width: 140px; height: 70px; }
 
-.cloud1 {
-  width: 200px;
-  height: 60px;
-  top: 100px;
-  left: -200px;
-}
-
-.cloud2 {
+/* 🌳 Cây to hơn, nhiều lá */
+.tree {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
   width: 150px;
-  height: 50px;
-  top: 200px;
-  left: -150px;
-  animation-delay: 15s;
+  height: 200px;
+  z-index: 2;
+  animation: treeSwing 6s ease-in-out infinite alternate;
 }
-
-.cloud3 {
-  width: 180px;
-  height: 55px;
-  top: 300px;
-  left: -180px;
-  animation-delay: 30s;
+@keyframes treeSwing {
+  0% { transform: rotate(-2deg); }
+  100% { transform: rotate(2deg); }
 }
-
-@keyframes moveClouds {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(130vw); }
-}
-
-/* ========== RAIN ========== */
-.rain {
+.trunk {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.2) 30%, transparent 30%),
-    linear-gradient(rgba(255, 255, 255, 0.2) 30%, transparent 30%);
-  background-size: 2px 40px;
-  background-repeat: repeat;
-  animation: rainAnim 0.4s linear infinite;
-  pointer-events: none;
-  z-index: 3;
+  bottom: 0;
+  left: 40%;
+  width: 20%;
+  height: 55%;
+  background: #6b4f33;
+  border-radius: 5px;
+  box-shadow: inset 2px 2px 5px #4a3b22;
 }
-
-@keyframes rainAnim {
-  0% { background-position: 0 0, 10px 20px; }
-  100% { background-position: 0 40px, 10px 60px; }
-}
-
-/* ========== LIGHTNING ========== */
-.lightning {
+.leaves {
   position: absolute;
-  top: 0;
+  bottom: 55%;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: white;
-  opacity: 0;
-  animation: lightningFlash 5s infinite;
-  pointer-events: none;
-  z-index: 5;
+  height: 45%;
+  background: radial-gradient(circle at center, #2c7a2c, #145214);
+  border-radius: 50% 50% 0 0;
+  box-shadow:
+    0 5px 15px rgba(34, 139, 34, 0.7),
+    20px 10px 20px rgba(34, 139, 34, 0.5),
+    -20px 10px 20px rgba(34, 139, 34, 0.5);
 }
 
-@keyframes lightningFlash {
-  0%, 90%, 100% { opacity: 0; }
-  92%, 94%, 96% { opacity: 1; }
+/* ✋ Tay của người ngủ */
+.sleeper {
+  position: absolute;
+  bottom: 15%;
+  left: 25%;
+  width: 70px;
+  height: 90px;
+  z-index: 3;
+  animation: slowBreath 4s ease-in-out infinite;
+}
+@keyframes slowBreath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.head {
+  width: 50px;
+  height: 50px;
+  background: #fcd5b5;
+  border-radius: 50%;
+  position: relative;
+  left: 10px;
+  box-shadow: inset -3px -3px 5px rgba(0,0,0,0.1);
+  border: 2px solid #d1aa79;
+}
+/* Mắt */
+.head::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 12px;
+  width: 8px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5b3a29;
+  box-shadow: 20px 0 #5b3a29;
+}
+/* Mũi */
+.head::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 22px;
+  width: 6px;
+  height: 4px;
+  border-radius: 50% / 100%;
+  background: #c68b65;
 }
 
-/* ========== CLOCK & WEATHER INFO ========== */
+/* Body */
+.body {
+  width: 60px;
+  height: 35px;
+  background: linear-gradient(to bottom, #607d8b, #455a64);
+  border-radius: 20px;
+  margin-top: 5px;
+  position: relative;
+  left: 5px;
+}
+
+/* Tay */
+.body::before, .body::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  width: 20px;
+  height: 30px;
+  background: #fcd5b5;
+  border-radius: 20px;
+  border: 2px solid #d1aa79;
+}
+.body::before {
+  left: -18px;
+  transform: rotate(15deg);
+}
+.body::after {
+  right: -18px;
+  transform: rotate(-15deg);
+}
+
+/* Zzz */
+.z {
+  position: absolute;
+  top: -25px;
+  left: 70px;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  color: #a0a0a0;
+  animation: floatZzz 2s ease-in-out infinite;
+}
+@keyframes floatZzz {
+  0%, 100% { opacity: 0.5; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-10px); }
+}
+
+/* ⏰ Đồng hồ */
 .clock {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 2rem;
-  background: rgba(0, 0, 0, 0.4);
-  color: #fff;
-  padding: 10px 20px;
+  top: 10px;
+  left: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  background: rgba(255 255 255 / 0.3);
+  padding: 8px 15px;
   border-radius: 10px;
-  z-index: 10;
+  user-select: none;
+  letter-spacing: 2px;
+}
+
+/* ☀️ Thời tiết */
+.weather-info {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  font-size: 18px;
+  font-weight: 500;
+  background: rgba(255 255 255 / 0.2);
+  padding: 6px 12px;
+  border-radius: 10px;
   user-select: none;
 }
 
-.weather-info {
-  position: absolute;
-  top: 80px;
-  right: 20px;
-  font-size: 1.2rem;
-  color: #333;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 10px 15px;
-  border-radius: 8px;
-  z-index: 10;
-  max-width: 280px;
-}
-
-/* ========== GREETING & TYPING ========== */
+/* 👋 Lời chào */
 .greeting {
   position: absolute;
-  bottom: 140px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2rem;
-  font-weight: bold;
-  color: #222;
-  z-index: 10;
+  top: 100px;
+  left: 20px;
+  font-size: 22px;
+  font-weight: 700;
+  background: rgba(255 255 255 / 0.2);
+  padding: 8px 15px;
+  border-radius: 12px;
 }
 
+/* ✍️ Gõ chữ */
 .typing {
   position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.2rem;
-  font-style: italic;
-  color: #444;
-  z-index: 10;
-}
-
-/* ========== BUTTONS ========== */
-.toggle-button,
-.theme-toggle,
-.music-toggle {
-  position: absolute;
-  bottom: 20px;
-  padding: 10px 15px;
-  font-size: 1rem;
-  background: #333;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.3s;
-}
-
-.toggle-button:hover,
-.theme-toggle:hover,
-.music-toggle:hover {
-  background: #555;
-}
-
-.toggle-button { left: 20px; }
-.theme-toggle { left: 130px; }
-.music-toggle { left: 270px; }
-
-/* ========== INFO MENU ========== */
-.info {
-  position: absolute;
-  top: 150px;
+  top: 140px;
   left: 20px;
-  max-width: 300px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 10;
+  width: 250px;
+  font-size: 16px;
+  font-weight: 500;
+  background: rgba(255 255 255 / 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  min-height: 25px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
+/* 🎛 Nhóm nút chức năng */
+.button-group {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+}
+.button-group button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.button-group button:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* 👤 Thông tin cá nhân */
+.info {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background: rgba(0 0 0 / 0.6);
+  border-radius: 12px;
+  padding: 15px 20px;
+  width: 250px;
+  color: #eee;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 0 20px #000;
+}
+.info.hidden {
+  display: none;
+}
 .info h2 {
   margin-bottom: 10px;
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 20px;
+  border-bottom: 1px solid #555;
+  padding-bottom: 8px;
 }
-
 .info ul {
   list-style: none;
 }
-
 .info ul li {
-  margin-bottom: 8px;
+  margin: 10px 0;
 }
-
 .info ul li a {
-  color: #0077cc;
+  color: #a9d6e5;
   text-decoration: none;
-  font-weight: bold;
+  transition: color 0.3s ease;
 }
-
 .info ul li a:hover {
-  text-decoration: underline;
+  color: #ffffff;
 }
 
-/* ========== HIDDEN ========== */
-.hidden {
-  display: none;
+/* Đổi giao diện sáng */
+body.light-mode {
+  background: linear-gradient(to top, #87cefa, #b0e0e6);
+  color: #222;
+}
+body.light-mode .clock,
+body.light-mode .weather-info,
+body.light-mode .greeting,
+body.light-mode .typing {
+  background: rgba(255 255 255 / 0.8);
+  color: #222;
+}
+body.light-mode .button-group button {
+  background: rgba(0 0 0 / 0.15);
+  color: #222;
+}
+body.light-mode .button-group button:hover {
+  background: rgba(0 0 0 / 0.3);
 }
 
-/* ========== THEMES ========== */
-.daytime .sky {
-  background: linear-gradient(to bottom, #87ceeb, #ffffff);
+/* Ban đêm và ban ngày */
+body.nighttime {
+  background: linear-gradient(to top, #00111f, #002c54);
+}
+body.daytime {
+  background: linear-gradient(to top, #87ceeb, #b0e0e6);
 }
 
-.daytime .sun { opacity: 1; }
-.daytime .moon { opacity: 0; }
-.daytime .clock,
-.daytime .weather-info,
-.daytime .greeting,
-.daytime .typing {
-  color: #000;
-}
-
-.nighttime .sky {
-  background: linear-gradient(to bottom, #001d3d, #000814);
-}
-
-.nighttime .sun { opacity: 0; }
-.nighttime .moon { opacity: 1; }
-.nighttime .clock,
-.nighttime .weather-info,
-.nighttime .greeting,
-.nighttime .typing {
-  color: #fff;
-}
-
-.light-mode {
-  background-color: #f0f0f0;
-  color: #111;
-}
-
-.light-mode .sky {
-  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
-}
-
-.light-mode .info {
-  background: #fff;
-}
-
-.light-mode .toggle-button,
-.light-mode .theme-toggle,
-.light-mode .music-toggle {
-  background: #1976d2;
-  color: #fff;
-}
-
-/* ♟️ Nút cờ vua */
-.chess-toggle {
+/* Đất (đồi) */
+.ground {
   position: absolute;
-  bottom: 20px;
-  left: 400px;
-  padding: 10px 15px;
-  font-size: 1rem;
-  background: #333;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.3s;
-}
-.chess-toggle:hover {
-  background: #555;
-}
-
-/* Cờ vua container */
-#chess-container {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.95);
-  padding: 20px;
-  border-radius: 10px;
-  z-index: 10;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-                         }
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  background: radial-gradient(ellipse at center, #3e4e2c 30%, #223311 90%);
+  border-top-left-radius: 50% 30%;
+  border-top-right-radius: 50% 30%;
+  box-shadow: inset 0 -10px 10px #2b3a17;
+  z-index: 1;
+  }
