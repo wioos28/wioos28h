@@ -4,7 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Thông tin của Huân - Thời tiết Hà Nội</title>
+
+  <!-- Style chính -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Chessboard.js CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css" />
+  <script src="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
 </head>
 <body>
   <div class="sky">
@@ -66,6 +72,15 @@
       </iframe>
     </div>
     <button class="music-toggle" onclick="toggleMusic()">🎵 Nhạc</button>
+
+    <!-- ♟️ Mini game cờ vua -->
+    <div id="chess-container" class="hidden">
+      <h2 style="color: #333; text-align: center;">Cờ vua mini</h2>
+      <div id="board" style="width: 300px; margin: 0 auto;"></div>
+    </div>
+
+    <!-- Nút bật/tắt mini game cờ vua -->
+    <button class="chess-toggle" onclick="toggleChess()">♟️ Cờ vua</button>
   </div>
 
   <script>
@@ -146,6 +161,20 @@
     }
     controlLightning();
     setInterval(controlLightning, 60000);
+
+    // ♟️ Mini game Cờ vua
+    function toggleChess() {
+      const container = document.getElementById("chess-container");
+      container.classList.toggle("hidden");
+
+      // Chỉ khởi tạo bàn cờ 1 lần
+      if (!window.chessBoard) {
+        window.chessBoard = Chessboard('board', {
+          draggable: true,
+          position: 'start'
+        });
+      }
+    }
   </script>
 </body>
-  </html>
+</html>
