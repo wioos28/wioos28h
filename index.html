@@ -4,32 +4,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Thông tin của Huân - Thời tiết Hà Nội</title>
-
-  <!-- Style chính -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Chessboard.js CDN -->
-  <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css" />
-  <script src="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
 </head>
 <body>
   <div class="sky">
+
     <!-- ☀️ Mặt trời -->
     <div class="sun" id="sun"></div>
 
     <!-- 🌙 Mặt trăng -->
     <div class="moon"></div>
 
+    <!-- 🌟 Sao -->
+    <div class="stars"></div>
+
     <!-- ☁️ Mây -->
     <div class="cloud cloud1"></div>
     <div class="cloud cloud2"></div>
     <div class="cloud cloud3"></div>
 
-    <!-- 🌧️ Mưa -->
-    <div class="rain"></div>
+    <!-- 🌳 Cây cổ thụ -->
+    <div class="tree">
+      <div class="trunk"></div>
+      <div class="leaves"></div>
+    </div>
 
-    <!-- ⚡ Sấm chớp -->
-    <div class="lightning" id="lightning"></div>
+    <!-- 😴 Người đang ngủ -->
+    <div class="sleeper">
+      <div class="head">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="nose"></div>
+      </div>
+      <div class="body"></div>
+      <div class="arms left-arm"></div>
+      <div class="arms right-arm"></div>
+      <div class="legs left-leg"></div>
+      <div class="legs right-leg"></div>
+      <div class="z">Zzz</div>
+    </div>
+
+    <!-- 🌿 Đất kiểu vòm -->
+    <div class="ground"></div>
 
     <!-- ⏰ Đồng hồ -->
     <div class="clock" id="clock">00:00:00</div>
@@ -43,9 +59,6 @@
     <!-- ✍️ Gõ chữ -->
     <div class="typing" id="typing-text"></div>
 
-    <!-- ☰ Menu -->
-    <button class="toggle-button" onclick="toggleMenu()">☰ Menu</button>
-
     <!-- 👤 Thông tin cá nhân -->
     <div class="info hidden" id="infoMenu">
       <h2>Thông tin của Huân</h2>
@@ -58,29 +71,23 @@
       </ul>
     </div>
 
-    <!-- 🌗 Giao diện -->
-    <button class="theme-toggle" onclick="toggleTheme()">🌓 Giao diện</button>
-
-    <!-- 🎵 Nhạc nền từ YouTube -->
+    <!-- 🎵 Nhạc nền -->
     <div id="youtube-player-container" style="display: none;">
       <iframe id="youtube-player"
               width="0" height="0"
               src="https://www.youtube.com/embed/750muho7O0o?autoplay=1&loop=1&playlist=750muho7O0o"
               frameborder="0"
               allow="autoplay"
-              allowfullscreen>
-      </iframe>
-    </div>
-    <button class="music-toggle" onclick="toggleMusic()">🎵 Nhạc</button>
-
-    <!-- ♟️ Mini game cờ vua -->
-    <div id="chess-container" class="hidden">
-      <h2 style="color: #333; text-align: center;">Cờ vua mini</h2>
-      <div id="board" style="width: 300px; margin: 0 auto;"></div>
+              allowfullscreen></iframe>
     </div>
 
-    <!-- Nút bật/tắt mini game cờ vua -->
-    <button class="chess-toggle" onclick="toggleChess()">♟️ Cờ vua</button>
+    <!-- 🔘 Nhóm nút chức năng -->
+    <div class="button-group">
+      <button onclick="toggleMenu()">☰ Menu</button>
+      <button onclick="toggleTheme()">🌓 Giao diện</button>
+      <button onclick="toggleMusic()">🎵 Nhạc</button>
+    </div>
+
   </div>
 
   <script>
@@ -123,7 +130,6 @@
       document.body.classList.toggle('light-mode');
     }
 
-    // 🎵 Tắt/Bật nhạc từ YouTube
     let musicPlaying = false;
     function toggleMusic() {
       const playerContainer = document.getElementById("youtube-player-container");
@@ -154,27 +160,21 @@
     updateThemeByTime();
     setInterval(updateThemeByTime, 60000);
 
-    function controlLightning() {
+    function updateSkyObjects() {
       const hour = new Date().getHours();
-      const lightning = document.getElementById('lightning');
-      lightning.style.display = (hour >= 18 || hour < 6) ? 'block' : 'none';
-    }
-    controlLightning();
-    setInterval(controlLightning, 60000);
+      const sun = document.getElementById('sun');
+      const moon = document.querySelector('.moon');
 
-    // ♟️ Mini game Cờ vua
-    function toggleChess() {
-      const container = document.getElementById("chess-container");
-      container.classList.toggle("hidden");
-
-      // Chỉ khởi tạo bàn cờ 1 lần
-      if (!window.chessBoard) {
-        window.chessBoard = Chessboard('board', {
-          draggable: true,
-          position: 'start'
-        });
+      if (hour >= 6 && hour < 18) {
+        sun.style.display = 'block';
+        moon.style.display = 'none';
+      } else {
+        sun.style.display = 'none';
+        moon.style.display = 'block';
       }
     }
+    updateSkyObjects();
+    setInterval(updateSkyObjects, 60000);
   </script>
 </body>
 </html>
