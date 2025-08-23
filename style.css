@@ -289,3 +289,35 @@ body {
   background: #1976d2;
   color: #fff;
 }
+
+/* ♟️ Nút cờ vua */
+.chess-toggle {
+  position: absolute;
+  bottom: 20px;
+  left: 400px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+.chess-toggle:hover {
+  background: #555;
+}
+
+/* Cờ vua container */
+#chess-container {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                         }
