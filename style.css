@@ -1,355 +1,46 @@
-/* Reset cơ bản */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-  background: linear-gradient(to top, #1e3c72, #2a5298);
-  color: white;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* Cảnh nền */
-.sky {
+/* From Uiverse.io by sahilxkhadka */ 
+.card {
+  width: 342px;
+  height: 184px;
   position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* ☀️ Mặt trời */
-.sun {
-  position: absolute;
-  top: 10%;
-  left: 20%;
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle at center, #ffd93b, #f1c232);
-  border-radius: 50%;
-  box-shadow: 0 0 30px 10px #ffd93b88;
-  animation: rotateSun 20s linear infinite;
-}
-
-@keyframes rotateSun {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* 🌙 Mặt trăng */
-.moon {
-  position: absolute;
-  top: 15%;
-  right: 15%;
-  width: 60px;
-  height: 60px;
-  background: #f0e9d2;
-  border-radius: 50%;
-  box-shadow: inset 15px 0 0 0 #1e3c72;
-  filter: drop-shadow(0 0 5px #fff9cc);
-}
-
-/* ☁️ Mây */
-.cloud {
-  position: absolute;
-  background: linear-gradient(to bottom, #fff, #ccc);
-  border-radius: 50%;
-  opacity: 0.85;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.cloud1 { top: 20%; left: 40%; width: 120px; height: 60px; }
-.cloud2 { top: 30%; left: 60%; width: 100px; height: 50px; }
-.cloud3 { top: 25%; left: 55%; width: 140px; height: 70px; }
-.cloud4 { top: 25%; left: 55%; width: 100px; height: 40px; }
-/* 🌳 Cây to hơn, nhiều lá */
-.tree {
-  position: absolute;
-  bottom: 10%;
-  left: 10%;
-  width: 150px;
-  height: 200px;
-  z-index: 2;
-  animation: treeSwing 6s ease-in-out infinite alternate;
-}
-@keyframes treeSwing {
-  0% { transform: rotate(-2deg); }
-  100% { transform: rotate(2deg); }
-}
-.trunk {
-  position: absolute;
-  bottom: 0;
-  left: 40%;
-  width: 20%;
-  height: 55%;
-  background: #6b4f33;
-  border-radius: 5px;
-  box-shadow: inset 2px 2px 5px #4a3b22;
-}
-.leaves {
-  position: absolute;
-  bottom: 55%;
-  left: 0;
-  width: 100%;
-  height: 45%;
-  background: radial-gradient(circle at center, #2c7a2c, #145214);
-  border-radius: 50% 50% 0 0;
-  box-shadow:
-    0 5px 15px rgba(34, 139, 34, 0.7),
-    20px 10px 20px rgba(34, 139, 34, 0.5),
-    -20px 10px 20px rgba(34, 139, 34, 0.5);
-}
-
-/* ✋ Tay của người ngủ */
-.sleeper {
-  position: absolute;
-  bottom: 15%;
-  left: 25%;
-  width: 70px;
-  height: 90px;
-  z-index: 3;
-  animation: slowBreath 4s ease-in-out infinite;
-}
-@keyframes slowBreath {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-.head {
-  width: 50px;
-  height: 50px;
-  background: #fcd5b5;
-  border-radius: 50%;
-  position: relative;
-  left: 10px;
-  box-shadow: inset -3px -3px 5px rgba(0,0,0,0.1);
-  border: 2px solid #d1aa79;
-}
-/* Mắt */
-.head::before {
-  content: '';
-  position: absolute;
-  top: 18px;
-  left: 12px;
-  width: 8px;
-  height: 6px;
-  border-radius: 50%;
-  background: #5b3a29;
-  box-shadow: 20px 0 #5b3a29;
-}
-/* Mũi */
-.head::after {
-  content: '';
-  position: absolute;
-  top: 30px;
-  left: 22px;
-  width: 6px;
-  height: 4px;
-  border-radius: 50% / 100%;
-  background: #c68b65;
-}
-
-/* Body */
-.body {
-  width: 60px;
-  height: 35px;
-  background: linear-gradient(to bottom, #607d8b, #455a64);
-  border-radius: 20px;
-  margin-top: 5px;
-  position: relative;
-  left: 5px;
-}
-
-/* Tay */
-.body::before, .body::after {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  width: 20px;
-  height: 30px;
-  background: #fcd5b5;
-  border-radius: 20px;
-  border: 2px solid #d1aa79;
-}
-.body::before {
-  left: -18px;
-  transform: rotate(15deg);
-}
-.body::after {
-  right: -18px;
-  transform: rotate(-15deg);
-}
-
-/* Zzz */
-.z {
-  position: absolute;
-  top: -25px;
-  left: 70px;
-  font-size: 20px;
-  font-weight: bold;
-  font-style: italic;
-  color: #a0a0a0;
-  animation: floatZzz 2s ease-in-out infinite;
-}
-@keyframes floatZzz {
-  0%, 100% { opacity: 0.5; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(-10px); }
-}
-
-/* ⏰ Đồng hồ */
-.clock {
-  position: absolute;
-  top: 10px;
-  left: 20px;
-  font-size: 24px;
-  font-weight: 600;
-  background: rgba(255 255 255 / 0.3);
-  padding: 8px 15px;
-  border-radius: 10px;
-  user-select: none;
-  letter-spacing: 2px;
-}
-
-/* ☀️ Thời tiết */
-.weather-info {
-  position: absolute;
-  top: 50px;
-  left: 20px;
-  font-size: 18px;
-  font-weight: 500;
-  background: rgba(255 255 255 / 0.2);
-  padding: 6px 12px;
-  border-radius: 10px;
-  user-select: none;
-}
-
-/* 👋 Lời chào */
-.greeting {
-  position: absolute;
-  top: 100px;
-  left: 20px;
-  font-size: 22px;
-  font-weight: 700;
-  background: rgba(255 255 255 / 0.2);
-  padding: 8px 15px;
-  border-radius: 12px;
-}
-
-/* ✍️ Gõ chữ */
-.typing {
-  position: absolute;
-  top: 140px;
-  left: 20px;
-  width: 250px;
-  font-size: 16px;
-  font-weight: 500;
-  background: rgba(255 255 255 / 0.1);
-  padding: 8px 12px;
-  border-radius: 8px;
-  min-height: 25px;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-/* 🎛 Nhóm nút chức năng */
-.button-group {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  padding: 20px;
+  color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  z-index: 100;
-}
-.button-group button {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-.button-group button:hover {
-  background: rgba(255, 255, 255, 0.4);
+  justify-content: space-between;
 }
 
-/* 👤 Thông tin cá nhân */
-.info {
-  position: fixed;
-  top: 60px;
-  right: 20px;
-  background: rgba(0 0 0 / 0.6);
-  border-radius: 12px;
-  padding: 15px 20px;
-  width: 250px;
-  color: #eee;
-  font-weight: 600;
-  z-index: 1000;
-  box-shadow: 0 0 20px #000;
-}
-.info.hidden {
-  display: none;
-}
-.info h2 {
-  margin-bottom: 10px;
-  font-size: 20px;
-  border-bottom: 1px solid #555;
-  padding-bottom: 8px;
-}
-.info ul {
-  list-style: none;
-}
-.info ul li {
-  margin: 10px 0;
-}
-.info ul li a {
-  color: #a9d6e5;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.info ul li a:hover {
-  color: #ffffff;
-}
-
-/* Đổi giao diện sáng */
-body.light-mode {
-  background: linear-gradient(to top, #87cefa, #b0e0e6);
-  color: #222;
-}
-body.light-mode .clock,
-body.light-mode .weather-info,
-body.light-mode .greeting,
-body.light-mode .typing {
-  background: rgba(255 255 255 / 0.8);
-  color: #222;
-}
-body.light-mode .button-group button {
-  background: rgba(0 0 0 / 0.15);
-  color: #222;
-}
-body.light-mode .button-group button:hover {
-  background: rgba(0 0 0 / 0.3);
-}
-
-/* Ban đêm và ban ngày */
-body.nighttime {
-  background: linear-gradient(to top, #00111f, #002c54);
-}
-body.daytime {
-  background: linear-gradient(to top, #87ceeb, #b0e0e6);
-}
-
-/* Đất (đồi) */
-.ground {
+.background {
+  fill: linear-gradient(90deg, #5936B4 0%, #362A84 100%);
   position: absolute;
-  bottom: 0;
-  width: 100%;
+  inset: 0;
+  z-index: -1;
+}
+
+.cloud {
+  position: absolute;
+  right: 0;
+  top: -12px;
+}
+
+.cloud svg {
   height: 120px;
-  background: radial-gradient(ellipse at center, #3e4e2c 30%, #223311 90%);
-  border-top-left-radius: 50% 30%;
-  border-top-right-radius: 50% 30%;
-  box-shadow: inset 0 -10px 10px #2b3a17;
-  z-index: 1;
-  }
+}
+
+.card .main-text {
+  font-size: 48px;
+  z-index: 2;
+}
+
+.card .info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card .info .text-gray {
+  color: rgba(235, 235, 245, 0.60);
+}
+
+.card .info .info-right {
+  align-self: flex-end;
+}
