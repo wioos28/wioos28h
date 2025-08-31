@@ -1,1 +1,80 @@
-/* From Uiverse.io by sahilxkhadka */ .card { width: 342px; height: 184px; position: relative; padding: 20px; color: #fff; display: flex; flex-direction: column; justify-content: space-between; } .background { fill: linear-gradient(90deg, #5936B4 0%, #362A84 100%); position: absolute; inset: 0; z-index: -1; } .cloud { position: absolute; right: 0; top: -12px; } .cloud svg { height: 120px; } .card .main-text { font-size: 48px; z-index: 2; } .card .info { display: flex; justify-content: space-between; } .card .info .text-gray { color: rgba(235, 235, 245, 0.60); } .card .info .info-right { align-self: flex-end; }
+/* Reset cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to bottom, #87ceeb, #fdf6b4); /* trời Hà Nội ban ngày */
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 40px;
+}
+
+/* Card Thời tiết */
+.weather-card {
+  width: 300px;
+  min-height: 160px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  border-radius: 18px;
+  padding: 20px;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.weather-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* Icon */
+.weather-card .icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.weather-card .icon img {
+  width: 60px;
+  height: 60px;
+}
+
+/* Nhiệt độ chính */
+.weather-card .temperature {
+  font-size: 42px;
+  font-weight: bold;
+  margin-top: 15px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* Thông tin phụ */
+.weather-card .details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.weather-card .details .left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.weather-card .details .right {
+  text-align: right;
+}
+
+.weather-card .details .text-gray {
+  color: rgba(235, 235, 245, 0.8);
+  font-size: 12px;
+}
